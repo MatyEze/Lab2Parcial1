@@ -1,0 +1,6 @@
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Entidades\bin\Debug\Entidades.dll
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Entidades\bin\Debug\Entidades.pdb
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Entidades\obj\Debug\Entidades.dll
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Entidades\obj\Debug\Entidades.pdb
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache

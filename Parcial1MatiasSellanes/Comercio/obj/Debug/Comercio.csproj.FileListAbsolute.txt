@@ -1,0 +1,14 @@
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\bin\Debug\Comercio.exe.config
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\bin\Debug\Comercio.exe
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\bin\Debug\Comercio.pdb
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\bin\Debug\Entidades.dll
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\bin\Debug\Entidades.pdb
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.csprojAssemblyReference.cache
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.FormPrincipal.resources
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.Properties.Resources.resources
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.csproj.GenerateResource.cache
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.csproj.CoreCompileInputs.cache
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.csproj.CopyComplete
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.exe
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.pdb
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.FormProducto.resources
