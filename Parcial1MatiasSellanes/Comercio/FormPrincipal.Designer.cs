@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStripPrincipal = new System.Windows.Forms.MenuStrip();
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.añadirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dtgvPrincipal = new System.Windows.Forms.DataGridView();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregarAlCarro = new System.Windows.Forms.Button();
@@ -39,44 +43,82 @@
             this.btnRealizarVenta = new System.Windows.Forms.Button();
             this.btnResetearCarro = new System.Windows.Forms.Button();
             this.txbCantidad = new System.Windows.Forms.TextBox();
-            this.menuStrip1.SuspendLayout();
+            this.txbDniCliente = new System.Windows.Forms.TextBox();
+            this.lblDniCliente = new System.Windows.Forms.Label();
+            this.txbEmpleadoNombre = new System.Windows.Forms.TextBox();
+            this.lblEmpleado = new System.Windows.Forms.Label();
+            this.txbEmpleadoDni = new System.Windows.Forms.TextBox();
+            this.menuStripPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvCarrito)).BeginInit();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menuStripPrincipal
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStripPrincipal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStripPrincipal.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStripPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.productosToolStripMenuItem,
-            this.salirToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1382, 28);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.salirToolStripMenuItem,
+            this.empleadosToolStripMenuItem,
+            this.cientesToolStripMenuItem});
+            this.menuStripPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.menuStripPrincipal.Name = "menuStripPrincipal";
+            this.menuStripPrincipal.Size = new System.Drawing.Size(1463, 36);
+            this.menuStripPrincipal.TabIndex = 0;
+            this.menuStripPrincipal.Text = "menuStrip1";
             // 
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.añadirToolStripMenuItem});
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(115, 32);
             this.productosToolStripMenuItem.Text = "Productos";
             // 
             // añadirToolStripMenuItem
             // 
             this.añadirToolStripMenuItem.Name = "añadirToolStripMenuItem";
-            this.añadirToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.añadirToolStripMenuItem.Size = new System.Drawing.Size(169, 32);
             this.añadirToolStripMenuItem.Text = "Agregar";
             this.añadirToolStripMenuItem.Click += new System.EventHandler(this.añadirToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(52, 24);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(64, 32);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
+            // empleadosToolStripMenuItem
+            // 
+            this.empleadosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listaToolStripMenuItem});
+            this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
+            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(122, 32);
+            this.empleadosToolStripMenuItem.Text = "Empleados";
+            // 
+            // listaToolStripMenuItem
+            // 
+            this.listaToolStripMenuItem.Name = "listaToolStripMenuItem";
+            this.listaToolStripMenuItem.Size = new System.Drawing.Size(243, 32);
+            this.listaToolStripMenuItem.Text = " Lista empleados";
+            this.listaToolStripMenuItem.Click += new System.EventHandler(this.listaToolStripMenuItem_Click);
+            // 
+            // cientesToolStripMenuItem
+            // 
+            this.cientesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listaClientesToolStripMenuItem});
+            this.cientesToolStripMenuItem.Name = "cientesToolStripMenuItem";
+            this.cientesToolStripMenuItem.Size = new System.Drawing.Size(89, 32);
+            this.cientesToolStripMenuItem.Text = "Cientes";
+            // 
+            // listaClientesToolStripMenuItem
+            // 
+            this.listaClientesToolStripMenuItem.Name = "listaClientesToolStripMenuItem";
+            this.listaClientesToolStripMenuItem.Size = new System.Drawing.Size(207, 32);
+            this.listaClientesToolStripMenuItem.Text = "Lista clientes";
+            this.listaClientesToolStripMenuItem.Click += new System.EventHandler(this.listaClientesToolStripMenuItem_Click);
             // 
             // dtgvPrincipal
             // 
@@ -115,12 +157,13 @@
             this.dtgvCarrito.Name = "dtgvCarrito";
             this.dtgvCarrito.RowHeadersWidth = 51;
             this.dtgvCarrito.RowTemplate.Height = 24;
-            this.dtgvCarrito.Size = new System.Drawing.Size(518, 376);
+            this.dtgvCarrito.Size = new System.Drawing.Size(608, 307);
             this.dtgvCarrito.TabIndex = 4;
+            this.dtgvCarrito.DataSourceChanged += new System.EventHandler(this.dtgvCarrito_DataSourceChanged);
             // 
             // btnRealizarVenta
             // 
-            this.btnRealizarVenta.Location = new System.Drawing.Point(1153, 485);
+            this.btnRealizarVenta.Location = new System.Drawing.Point(1067, 464);
             this.btnRealizarVenta.Name = "btnRealizarVenta";
             this.btnRealizarVenta.Size = new System.Drawing.Size(208, 54);
             this.btnRealizarVenta.TabIndex = 5;
@@ -130,7 +173,7 @@
             // 
             // btnResetearCarro
             // 
-            this.btnResetearCarro.Location = new System.Drawing.Point(843, 485);
+            this.btnResetearCarro.Location = new System.Drawing.Point(841, 464);
             this.btnResetearCarro.Name = "btnResetearCarro";
             this.btnResetearCarro.Size = new System.Drawing.Size(208, 54);
             this.btnResetearCarro.TabIndex = 6;
@@ -146,12 +189,63 @@
             this.txbCantidad.Size = new System.Drawing.Size(59, 53);
             this.txbCantidad.TabIndex = 7;
             // 
+            // txbDniCliente
+            // 
+            this.txbDniCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbDniCliente.Location = new System.Drawing.Point(1006, 424);
+            this.txbDniCliente.Name = "txbDniCliente";
+            this.txbDniCliente.Size = new System.Drawing.Size(269, 34);
+            this.txbDniCliente.TabIndex = 8;
+            // 
+            // lblDniCliente
+            // 
+            this.lblDniCliente.AutoSize = true;
+            this.lblDniCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDniCliente.Location = new System.Drawing.Point(838, 427);
+            this.lblDniCliente.Name = "lblDniCliente";
+            this.lblDniCliente.Size = new System.Drawing.Size(162, 29);
+            this.lblDniCliente.TabIndex = 9;
+            this.lblDniCliente.Text = "DNI CLIENTE";
+            // 
+            // txbEmpleadoNombre
+            // 
+            this.txbEmpleadoNombre.Enabled = false;
+            this.txbEmpleadoNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbEmpleadoNombre.Location = new System.Drawing.Point(942, 642);
+            this.txbEmpleadoNombre.Name = "txbEmpleadoNombre";
+            this.txbEmpleadoNombre.Size = new System.Drawing.Size(275, 34);
+            this.txbEmpleadoNombre.TabIndex = 10;
+            // 
+            // lblEmpleado
+            // 
+            this.lblEmpleado.AutoSize = true;
+            this.lblEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmpleado.Location = new System.Drawing.Point(791, 645);
+            this.lblEmpleado.Name = "lblEmpleado";
+            this.lblEmpleado.Size = new System.Drawing.Size(145, 29);
+            this.lblEmpleado.TabIndex = 11;
+            this.lblEmpleado.Text = "EMPLEADO";
+            // 
+            // txbEmpleadoDni
+            // 
+            this.txbEmpleadoDni.Enabled = false;
+            this.txbEmpleadoDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbEmpleadoDni.Location = new System.Drawing.Point(1223, 642);
+            this.txbEmpleadoDni.Name = "txbEmpleadoDni";
+            this.txbEmpleadoDni.Size = new System.Drawing.Size(228, 34);
+            this.txbEmpleadoDni.TabIndex = 12;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1382, 684);
+            this.ClientSize = new System.Drawing.Size(1463, 734);
             this.ControlBox = false;
+            this.Controls.Add(this.txbEmpleadoDni);
+            this.Controls.Add(this.lblEmpleado);
+            this.Controls.Add(this.txbEmpleadoNombre);
+            this.Controls.Add(this.lblDniCliente);
+            this.Controls.Add(this.txbDniCliente);
             this.Controls.Add(this.txbCantidad);
             this.Controls.Add(this.btnResetearCarro);
             this.Controls.Add(this.btnRealizarVenta);
@@ -159,13 +253,13 @@
             this.Controls.Add(this.btnAgregarAlCarro);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dtgvPrincipal);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.menuStripPrincipal);
+            this.MainMenuStrip = this.menuStripPrincipal;
             this.Name = "FormPrincipal";
             this.Text = "Kwik E Mart por Sellanes";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStripPrincipal.ResumeLayout(false);
+            this.menuStripPrincipal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPrincipal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvCarrito)).EndInit();
             this.ResumeLayout(false);
@@ -175,7 +269,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStripPrincipal;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem añadirToolStripMenuItem;
@@ -186,6 +280,15 @@
         private System.Windows.Forms.Button btnRealizarVenta;
         private System.Windows.Forms.Button btnResetearCarro;
         private System.Windows.Forms.TextBox txbCantidad;
+        private System.Windows.Forms.TextBox txbDniCliente;
+        private System.Windows.Forms.Label lblDniCliente;
+        private System.Windows.Forms.TextBox txbEmpleadoNombre;
+        private System.Windows.Forms.Label lblEmpleado;
+        private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listaClientesToolStripMenuItem;
+        private System.Windows.Forms.TextBox txbEmpleadoDni;
     }
 }
 

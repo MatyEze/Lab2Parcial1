@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +15,19 @@ namespace Entidades
     {
         List<Compra> listaCompras;
 
+        /*public List<Compra> ListaCompras
+        {
+            get { return listaCompras; }
+        }*/
+
         public Cliente(string nombre, string apellido, int dni) : base(nombre, apellido, dni)
         {
             listaCompras = new List<Compra>();
+        }
+
+        public void AgregarCompra(Compra compra)
+        {
+            if (listaCompras + compra) { };
         }
 
         public static bool operator +(List<Cliente> listaClientes, Cliente cliente)

@@ -20,6 +20,11 @@ namespace Entidades
             listaVentas = new List<Compra>();
         }
 
+        public void AgregarCompra(Compra compra)
+        {
+            if (listaVentas + compra) { };
+        }
+
         public static bool operator +(List<Empleado> listaEmpleados, Empleado empleado)
         {
             bool valorRetorno = false;

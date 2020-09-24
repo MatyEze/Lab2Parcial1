@@ -21,7 +21,18 @@ namespace Entidades
         {
             get { return inventario; }
         }
-
+        static public List<Compra> Ventas
+        {
+            get { return ventas; }
+        }
+        static public List<Empleado> Empleados
+        {
+            get { return empleados; }
+        }
+        static public List<Cliente> Clientes
+        {
+            get { return clientes; }
+        }
         static public int UltimoNroCompras
         {
             get { return ultimoNroCompras+1; }
@@ -67,18 +78,20 @@ namespace Entidades
         public static bool Add(Compra compra)
         {
             bool valorRetorno = false;
+
+            foreach (ItemCompra item in compra.ListaItemsCompra)
+            {
+                if (!item.ElProducto.RemoverStock(item.Cantidad))
+                {
+                    return valorRetorno;
+                }
+            }
+
             if (ventas + compra)
             {
                 if (ultimoNroCompras < compra.NumeroDeCompra)
                 {
                     ultimoNroCompras = compra.NumeroDeCompra;
-                }
-                foreach (ItemCompra item in compra.ListaItemsCompra)
-                {
-                    if (!item.ElProducto.RemoverStock(item.Cantidad))
-                    {
-                        return valorRetorno;
-                    }
                 }
                 valorRetorno = true;
             }
@@ -96,6 +109,32 @@ namespace Entidades
                     }
                 }
             }
+        }
+        public static int FindClienteIndexByDni(int dni)
+        {
+            int valorRetorno = -1;
+            for (int i = 0; i < clientes.Count; i++)
+            {
+                if (clientes[i].Dni == dni)
+                {
+                    valorRetorno = i;
+                    break;
+                }
+            }
+            return valorRetorno;
+        }
+        public static int FindEmpleadoIndexByDni(int dni)
+        {
+            int valorRetorno = -1;
+            for (int i = 0; i < empleados.Count; i++)
+            {
+                if (empleados[i].Dni == dni)
+                {
+                    valorRetorno = i;
+                    break;
+                }
+            }
+            return valorRetorno;
         }
     }
 }
