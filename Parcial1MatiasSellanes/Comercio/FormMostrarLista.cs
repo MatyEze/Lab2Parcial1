@@ -16,6 +16,11 @@ namespace Comercio
         {
             get { return this.dtgvLista; }
         }
+        public Button BotonAgregar
+        {
+            get { return this.btnAgregar; }
+        }
+
         public FormMostrarLista()
         {
             InitializeComponent();

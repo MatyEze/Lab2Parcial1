@@ -31,7 +31,7 @@
             this.txbNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblApellido = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txbApellido = new System.Windows.Forms.TextBox();
             this.lblDni = new System.Windows.Forms.Label();
             this.txbDni = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
@@ -44,6 +44,7 @@
             this.txbNombre.Name = "txbNombre";
             this.txbNombre.Size = new System.Drawing.Size(276, 34);
             this.txbNombre.TabIndex = 1;
+            this.txbNombre.Leave += new System.EventHandler(this.txbNombre_Leave);
             // 
             // lblNombre
             // 
@@ -65,13 +66,14 @@
             this.lblApellido.TabIndex = 9;
             this.lblApellido.Text = "Ampellido";
             // 
-            // textBox1
+            // txbApellido
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(128, 111);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(276, 34);
-            this.textBox1.TabIndex = 8;
+            this.txbApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbApellido.Location = new System.Drawing.Point(128, 111);
+            this.txbApellido.Name = "txbApellido";
+            this.txbApellido.Size = new System.Drawing.Size(276, 34);
+            this.txbApellido.TabIndex = 8;
+            this.txbApellido.Leave += new System.EventHandler(this.txbNombre_Leave);
             // 
             // lblDni
             // 
@@ -90,6 +92,7 @@
             this.txbDni.Name = "txbDni";
             this.txbDni.Size = new System.Drawing.Size(276, 34);
             this.txbDni.TabIndex = 10;
+            this.txbDni.Leave += new System.EventHandler(this.txbDni_Leave);
             // 
             // btnAceptar
             // 
@@ -99,6 +102,7 @@
             this.btnAceptar.TabIndex = 12;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // FormPersona
             // 
@@ -109,7 +113,7 @@
             this.Controls.Add(this.lblDni);
             this.Controls.Add(this.txbDni);
             this.Controls.Add(this.lblApellido);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txbApellido);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.txbNombre);
             this.MaximizeBox = false;
@@ -126,7 +130,7 @@
         private System.Windows.Forms.TextBox txbNombre;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblApellido;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbApellido;
         private System.Windows.Forms.Label lblDni;
         private System.Windows.Forms.TextBox txbDni;
         private System.Windows.Forms.Button btnAceptar;

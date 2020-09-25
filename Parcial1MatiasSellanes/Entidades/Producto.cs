@@ -105,5 +105,30 @@ namespace Entidades
             return valorRetorno;
         }
 
+        public static List<Producto> SubListPorStock(List<Producto> lista, int min)
+        {
+            List<Producto> subList = new List<Producto>();
+            foreach (Producto item in lista)
+            {
+                if (item.stock > min)
+                {
+                    if(subList + item) { }
+                }
+            }
+            return subList;
+        }
+
+        public static List<Producto> SubListPorStock(List<Producto> lista, int min, int max)
+        {
+            List<Producto> subList = new List<Producto>();
+            foreach (Producto item in lista)
+            {
+                if (item.stock >= min && item.stock <= max)
+                {
+                    if (subList + item) { }
+                }
+            }
+            return subList;
+        }
     }
 }

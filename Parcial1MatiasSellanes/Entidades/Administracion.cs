@@ -136,5 +136,21 @@ namespace Entidades
             }
             return valorRetorno;
         }
+        /// <summary>
+        /// hardcodea una compra de un solo producto y lo agraga a la lista de ventas y se la otorga al cliente y empleado correspondientes
+        /// </summary>
+        /// <param name="nmroCompra"></param>
+        /// <param name="producto"></param>
+        /// <param name="cantidad"></param>
+        /// <param name="dniEmpleado"></param>
+        /// <param name="dniCliente"></param>
+        public static void HardCodeCompra(int nmroCompra, Producto producto, int cantidad, int dniEmpleado, int dniCliente)
+        {
+            List<ItemCompra> itemCompras = new List<ItemCompra>();
+            itemCompras.Add(new ItemCompra(producto, cantidad));
+            Compra compra = new Compra(nmroCompra, itemCompras);
+            Administracion.empleados[Administracion.FindEmpleadoIndexByDni(dniEmpleado)].AgregarCompra(compra);
+            Administracion.clientes[Administracion.FindClienteIndexByDni(dniCliente)].AgregarCompra(compra);
+        }
     }
 }

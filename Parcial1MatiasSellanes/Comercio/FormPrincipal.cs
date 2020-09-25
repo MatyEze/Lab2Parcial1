@@ -33,7 +33,10 @@ namespace Comercio
             FormProducto formAltaPorducto = new FormProducto();
             if (formAltaPorducto.ShowDialog() == DialogResult.OK)
             {
-                Administracion.Add(formAltaPorducto.Producto);
+                if (!Administracion.Add(formAltaPorducto.Producto))
+                {
+                    MessageBox.Show("No se pudo agregar el producto");
+                }
                 CargarDataGrid(Administracion.Inventario);
             }
         }
@@ -53,6 +56,8 @@ namespace Comercio
             Administracion.Add(new Producto(5230, "galletas", TipoProducto.Seco, 250, 45));
             Administracion.Add(new Producto(5233, "chocolate", TipoProducto.Seco, 300, 50));
             Administracion.Add(new Producto(5235, "duraznos laterraza", TipoProducto.Enlatado, 80, 150));
+            Administracion.Add(new Producto(5238, "chocolate agila", TipoProducto.Seco, 40, 5));
+            Administracion.Add(new Producto(5280, "caramelos sancor", TipoProducto.Seco, 15, 3));
 
             Administracion.Add(new Empleado("Matias", "Sellanes", 123456789));
 
@@ -62,6 +67,8 @@ namespace Comercio
             Administracion.Add(new Cliente("Bart", "Simpson", 122151234));
             Administracion.Add(new Cliente("Detart", "Filatro", 122833234));
             Administracion.Add(new Cliente("Marcelo", "Parezco", 456833234));
+
+            Administracion.HardCodeCompra(1, Administracion.Inventario[1], 3, 123456789, 0);
         }
 
         public void CargarDataGrid(List<Producto> listaProductos)
@@ -100,7 +107,7 @@ namespace Comercio
 
         private void btnRealizarVenta_Click(object sender, EventArgs e)
         {
-            if (carritoDeCompras.Count > 0)
+            if (carritoDeCompras.Count > 0 && this.txbDniCliente.BackColor != Color.Red)
             {
                 Compra compra = new Compra(Administracion.UltimoNroCompras, carritoDeCompras);
                 if (Administracion.Add(compra))
@@ -108,6 +115,18 @@ namespace Comercio
                     if (Administracion.FindClienteIndexByDni(Validaciones.StringToInt(this.txbDniCliente.Text)) == -1 || (Validaciones.StringToInt(this.txbDniCliente.Text) == 0))
                     {
                         //preguntar si crear nuevo cliente o no (si no agregarlo a anonimo)
+                        if (Validaciones.StringToInt(this.txbDniCliente.Text) == 0 || MessageBox.Show("El DNI no se encuantra registrado en clientes desea crear uno nuevo", "CLIENTE NO REGISTRADO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        {
+                            Administracion.Clientes[Administracion.FindClienteIndexByDni(0)].AgregarCompra(compra); //se agrega la compra al cliente con dni 0 (anonimo)
+                        }
+                        else
+                        {
+                            FormPersona formPersona = new FormPersona("Cliente");
+                            if (formPersona.ShowDialog()==DialogResult.OK)
+                            {
+                                MessageBox.Show("Cliente agregado correctamente");
+                            }
+                        }
                     }
                     else
                     {
@@ -126,7 +145,7 @@ namespace Comercio
 
         private void btnAgregarAlCarro_Click(object sender, EventArgs e)
         {
-            if (this.dtgvPrincipal.SelectedRows.Count > 0)
+            if (this.dtgvPrincipal.SelectedRows.Count > 0) //solo agrega un solo producto que es el primer selecionado (cambiar para poder agragar de a muchos)
             {
                 carritoDeCompras.Add(new ItemCompra((Producto)this.dtgvPrincipal.SelectedRows[0].DataBoundItem, Validaciones.ValidarInt(this.txbCantidad.Text, 1)));
                 CargarDataGrid(carritoDeCompras);
@@ -139,13 +158,17 @@ namespace Comercio
             CargarDataGrid(carritoDeCompras);
         }
 
-        private void listaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void listaEmpleadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormMostrarLista mostrarLista = new FormMostrarLista();
             mostrarLista.ListaDtgv.DataSource = Administracion.Empleados;
-            if (mostrarLista.ShowDialog()==DialogResult.Yes)
+            if (mostrarLista.ShowDialog() == DialogResult.Yes)
             {
-                listaToolStripMenuItem_Click(sender, e);
+                FormPersona agregarPersona = new FormPersona("Empleado");
+                if (agregarPersona.ShowDialog() == DialogResult.OK)
+                {
+                    listaEmpleadosToolStripMenuItem_Click(sender, e);
+                }
             }
         }
 
@@ -155,7 +178,11 @@ namespace Comercio
             mostrarLista.ListaDtgv.DataSource = Administracion.Clientes;
             if (mostrarLista.ShowDialog() == DialogResult.Yes)
             {
-                listaToolStripMenuItem_Click(sender, e);
+                FormPersona agregarPersona = new FormPersona("Cliente");
+                if (agregarPersona.ShowDialog() == DialogResult.OK)
+                {
+                    listaClientesToolStripMenuItem_Click(sender, e);
+                }
             }
         }
 
@@ -168,6 +195,41 @@ namespace Comercio
                 this.btnResetearCarro.Enabled = true;
                 this.btnRealizarVenta.Enabled = true;
             }
+        }
+
+        private void agregarClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPersona agregarPersona = new FormPersona("Cliente");
+            if (agregarPersona.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("Cliente agregado correctamente");
+            }
+        }
+
+        private void agregarEmpleadoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormPersona agregarPersona = new FormPersona("Empleado");
+            if (agregarPersona.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("Cliente agregado correctamente");
+            }
+        }
+        private void txbDniCliente_Leave(object sender, EventArgs e)
+        {
+            ((TextBox)sender).BackColor = Color.White;
+            if (!Validaciones.VerificarNumeros(((TextBox)sender).Text))
+            {
+                ((TextBox)sender).BackColor = Color.Red;
+            }
+        }
+
+        private void mostrarProductosConBajoStockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormMostrarLista mostrarLista = new FormMostrarLista();
+            mostrarLista.ListaDtgv.DataSource = Producto.SubListPorStock(Administracion.Inventario, 0, 10);
+            mostrarLista.BotonAgregar.Enabled = false;
+            mostrarLista.Text = "PRODUCTOS CON MENOS DE 10 EN STOCK";
+            mostrarLista.ShowDialog();
         }
     }
 }
