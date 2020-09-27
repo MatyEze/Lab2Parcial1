@@ -14,6 +14,7 @@ namespace Comercio
     public partial class FormPrincipal : Form
     {
         List<ItemCompra> carritoDeCompras;
+        double descuento;
 
         public FormPrincipal()
         {
@@ -28,9 +29,10 @@ namespace Comercio
             }
         }
 
-        private void añadirToolStripMenuItem_Click(object sender, EventArgs e)
+        private void añadirProductoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormProducto formAltaPorducto = new FormProducto();
+            formAltaPorducto.Text = "AGREGAR PRODUCTO";
             if (formAltaPorducto.ShowDialog() == DialogResult.OK)
             {
                 if (!Administracion.Add(formAltaPorducto.Producto))
@@ -48,6 +50,8 @@ namespace Comercio
             carritoDeCompras = new List<ItemCompra>();
             this.txbEmpleadoNombre.Text = $"{Administracion.Empleados[0].Nombre} {Administracion.Empleados[0].Apellido}";
             this.txbEmpleadoDni.Text = $"{Administracion.Empleados[0].Dni}";
+            descuento = 0;
+            this.picboxLogo.ImageLocation = @"..\img\kwik-e-mart.jpg"; //no carga la imagen 
             CargarAllDataGrid();
 
         }
@@ -94,6 +98,8 @@ namespace Comercio
                 FormProducto formProducto = new FormProducto();
                 formProducto.Producto = (Producto)this.dtgvPrincipal.SelectedRows[0].DataBoundItem;
                 formProducto.TxbIdProducto.Enabled = false;
+                formProducto.BtnEliminar.Visible = true;
+                formProducto.Text = "MODIFICAR PRODUCTO";
                 if (formProducto.ShowDialog() == DialogResult.OK)
                 {
                     Administracion.Remplazar(formProducto.Producto);
@@ -109,7 +115,8 @@ namespace Comercio
         {
             if (carritoDeCompras.Count > 0 && this.txbDniCliente.BackColor != Color.Red)
             {
-                Compra compra = new Compra(Administracion.UltimoNroCompras, carritoDeCompras);
+                Compra compra = new Compra((Administracion.UltimoNroCompras) + 1, carritoDeCompras);
+                compra.ReducirTotal(compra.Total * descuento);
                 if (Administracion.Add(compra))
                 {
                     if (Administracion.FindClienteIndexByDni(Validaciones.StringToInt(this.txbDniCliente.Text)) == -1 || (Validaciones.StringToInt(this.txbDniCliente.Text) == 0))
@@ -122,7 +129,7 @@ namespace Comercio
                         else
                         {
                             FormPersona formPersona = new FormPersona("Cliente");
-                            if (formPersona.ShowDialog()==DialogResult.OK)
+                            if (formPersona.ShowDialog() == DialogResult.OK)
                             {
                                 MessageBox.Show("Cliente agregado correctamente");
                             }
@@ -133,6 +140,7 @@ namespace Comercio
                         Administracion.Clientes[Administracion.FindClienteIndexByDni(Validaciones.StringToInt(this.txbDniCliente.Text))].AgregarCompra(compra); //agrego compra a un cliente existente mediante su dni
                     }
                     Administracion.Empleados[Administracion.FindEmpleadoIndexByDni(Validaciones.StringToInt(this.txbEmpleadoDni.Text))].AgregarCompra(compra); //agergo compra al empleado actual
+                    this.lblVuelvaProntoss.Visible = true;
                     carritoDeCompras.Clear();
                     CargarAllDataGrid();
                 }
@@ -162,12 +170,36 @@ namespace Comercio
         {
             FormMostrarLista mostrarLista = new FormMostrarLista();
             mostrarLista.ListaDtgv.DataSource = Administracion.Empleados;
-            if (mostrarLista.ShowDialog() == DialogResult.Yes)
+            mostrarLista.BotonAgregar.Enabled = true;
+            mostrarLista.BotonDetalles.Enabled = true;
+            mostrarLista.Text = "EMPLEADOS";
+            if (mostrarLista.ShowDialog() == DialogResult.Yes) // si se apreta el boton agregar
             {
                 FormPersona agregarPersona = new FormPersona("Empleado");
-                if (agregarPersona.ShowDialog() == DialogResult.OK)
+                if (agregarPersona.ShowDialog() == DialogResult.OK) //cuando apretan aceptar en el FormPersona
                 {
                     listaEmpleadosToolStripMenuItem_Click(sender, e);
+                }
+            }
+            else if (mostrarLista.DialogResult == DialogResult.No) //si apretan el boton detalles
+            {
+                mostrarLista.ListaDtgv.DataSource = ((Empleado)(mostrarLista.Dato)).ListaVentas;
+                mostrarLista.BotonAgregar.Enabled = false;
+                mostrarLista.Text = "LISTA DE VENTAS";
+                if (mostrarLista.ShowDialog() == DialogResult.OK) //boton salir del FormMostrarLista
+                {
+                    listaEmpleadosToolStripMenuItem_Click(sender, e);
+                }
+                else if (mostrarLista.DialogResult == DialogResult.No) //si apreta detalles de compra
+                {
+                    mostrarLista.ListaDtgv.DataSource = ((Compra)(mostrarLista.Dato)).ListaItemsCompra;
+                    mostrarLista.BotonAgregar.Enabled = false;
+                    mostrarLista.BotonDetalles.Enabled = false;
+                    mostrarLista.Text = "DETALLES DE COMPRA";
+                    if (mostrarLista.ShowDialog() == DialogResult.OK) //boton salir del FormMostrarLista
+                    {
+                        listaEmpleadosToolStripMenuItem_Click(sender, e);
+                    }
                 }
             }
         }
@@ -176,6 +208,8 @@ namespace Comercio
         {
             FormMostrarLista mostrarLista = new FormMostrarLista();
             mostrarLista.ListaDtgv.DataSource = Administracion.Clientes;
+            mostrarLista.BotonAgregar.Enabled = true;
+            mostrarLista.Text = "LISTA CLIENTES";
             if (mostrarLista.ShowDialog() == DialogResult.Yes)
             {
                 FormPersona agregarPersona = new FormPersona("Cliente");
@@ -200,6 +234,7 @@ namespace Comercio
         private void agregarClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormPersona agregarPersona = new FormPersona("Cliente");
+            agregarPersona.Text = "AGREGAR CLIENTE";
             if (agregarPersona.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show("Cliente agregado correctamente");
@@ -209,6 +244,7 @@ namespace Comercio
         private void agregarEmpleadoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FormPersona agregarPersona = new FormPersona("Empleado");
+            agregarPersona.Text = "AGREGAR EMPLEADO";
             if (agregarPersona.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show("Cliente agregado correctamente");
@@ -228,8 +264,63 @@ namespace Comercio
             FormMostrarLista mostrarLista = new FormMostrarLista();
             mostrarLista.ListaDtgv.DataSource = Producto.SubListPorStock(Administracion.Inventario, 0, 10);
             mostrarLista.BotonAgregar.Enabled = false;
+            mostrarLista.BotonDetalles.Enabled = false;
             mostrarLista.Text = "PRODUCTOS CON MENOS DE 10 EN STOCK";
             mostrarLista.ShowDialog();
+        }
+
+        private void totalEnStockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Se encuentran {Producto.TotalStockEnLista(Administracion.Inventario)} productos alamacenados");
+        }
+
+        private void btnClienteExistente_Click(object sender, EventArgs e)
+        {
+            FormMostrarLista formMostrar = new FormMostrarLista();
+            formMostrar.ListaDtgv.DataSource = Administracion.Clientes;
+            formMostrar.BotonAgregar.Enabled = true;
+            formMostrar.Text = "SELECIONE UN CLIENTE Y AGREGELO A LA COMPRA";
+            if (formMostrar.ShowDialog() == DialogResult.Yes) //boton agregar
+            {
+                this.txbDniCliente.Text = (((Cliente)(formMostrar.Dato)).Dni).ToString();
+            }
+        }
+
+        private void txbDniCliente_TextChanged(object sender, EventArgs e)
+        {
+            this.lblElDescuento.Text = "0";
+            if (Administracion.FindClienteIndexByDni(Validaciones.StringToInt(this.txbDniCliente.Text)) != -1)
+            {
+                Cliente cliente = Administracion.Clientes[Administracion.FindClienteIndexByDni(Validaciones.StringToInt(this.txbDniCliente.Text))];
+                if ("Simpson" == cliente.Apellido) //chequea si es de apellido Simpson
+                {
+                    this.lblElDescuento.Text = "13";
+                }
+            }
+
+            this.descuento = Validaciones.StringToDouble(this.lblElDescuento.Text) / 100;
+        }
+        private void BorrarVuelvaProntoss()
+        {
+            if (this.lblVuelvaProntoss.Visible == true)
+            {
+                this.lblVuelvaProntoss.Visible = false;
+            }
+        }
+
+        private void menuStripPrincipal_MouseEnter(object sender, EventArgs e)
+        {
+            BorrarVuelvaProntoss();
+        }
+
+        private void dtgvPrincipal_MouseEnter(object sender, EventArgs e)
+        {
+            BorrarVuelvaProntoss();
+        }
+
+        private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Retry;
         }
     }
 }

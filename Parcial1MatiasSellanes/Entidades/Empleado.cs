@@ -14,6 +14,10 @@ namespace Entidades
     {
 
         List<Compra> listaVentas;
+        public List<Compra> ListaVentas
+        {
+            get { return listaVentas; }
+        }
 
         public Empleado(string nombre, string apellido, int dni) : base(nombre, apellido, dni)
         {

@@ -35,7 +35,11 @@ namespace Entidades
         }
         static public int UltimoNroCompras
         {
-            get { return ultimoNroCompras+1; }
+            get { return ultimoNroCompras; }
+        }
+        static public int UltimaIdProducto
+        {
+            get { return ultimaIdProducto; }
         }
 
         static Administracion()
@@ -149,6 +153,7 @@ namespace Entidades
             List<ItemCompra> itemCompras = new List<ItemCompra>();
             itemCompras.Add(new ItemCompra(producto, cantidad));
             Compra compra = new Compra(nmroCompra, itemCompras);
+            Administracion.Add(compra);
             Administracion.empleados[Administracion.FindEmpleadoIndexByDni(dniEmpleado)].AgregarCompra(compra);
             Administracion.clientes[Administracion.FindClienteIndexByDni(dniCliente)].AgregarCompra(compra);
         }

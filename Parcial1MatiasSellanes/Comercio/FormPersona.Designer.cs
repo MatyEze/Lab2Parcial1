@@ -96,18 +96,21 @@
             // 
             // btnAceptar
             // 
+            this.btnAceptar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnAceptar.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAceptar.Location = new System.Drawing.Point(241, 254);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(163, 57);
             this.btnAceptar.TabIndex = 12;
             this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.UseVisualStyleBackColor = false;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // FormPersona
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkOrange;
             this.ClientSize = new System.Drawing.Size(436, 323);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.lblDni);

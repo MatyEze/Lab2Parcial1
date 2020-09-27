@@ -39,6 +39,7 @@
             this.lblPrecioUnidad = new System.Windows.Forms.Label();
             this.lblStock = new System.Windows.Forms.Label();
             this.lblTipo = new System.Windows.Forms.Label();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txbIdProducto
@@ -46,15 +47,16 @@
             this.txbIdProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbIdProducto.Location = new System.Drawing.Point(174, 19);
             this.txbIdProducto.Name = "txbIdProducto";
-            this.txbIdProducto.Size = new System.Drawing.Size(204, 34);
+            this.txbIdProducto.Size = new System.Drawing.Size(260, 34);
             this.txbIdProducto.TabIndex = 0;
+            this.txbIdProducto.Leave += new System.EventHandler(this.txbIdProducto_Leave);
             // 
             // txbDescripcion
             // 
             this.txbDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbDescripcion.Location = new System.Drawing.Point(174, 75);
             this.txbDescripcion.Name = "txbDescripcion";
-            this.txbDescripcion.Size = new System.Drawing.Size(204, 34);
+            this.txbDescripcion.Size = new System.Drawing.Size(260, 34);
             this.txbDescripcion.TabIndex = 1;
             // 
             // txbPrecioUnidad
@@ -80,17 +82,19 @@
             this.cmbTipoProducto.FormattingEnabled = true;
             this.cmbTipoProducto.Location = new System.Drawing.Point(174, 236);
             this.cmbTipoProducto.Name = "cmbTipoProducto";
-            this.cmbTipoProducto.Size = new System.Drawing.Size(204, 37);
+            this.cmbTipoProducto.Size = new System.Drawing.Size(260, 37);
             this.cmbTipoProducto.TabIndex = 4;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(257, 288);
+            this.btnAceptar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnAceptar.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnAceptar.Location = new System.Drawing.Point(313, 288);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(121, 46);
             this.btnAceptar.TabIndex = 5;
             this.btnAceptar.Text = "ACEPTAR";
-            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.UseVisualStyleBackColor = false;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // lblIdProducto
@@ -143,11 +147,27 @@
             this.lblTipo.TabIndex = 10;
             this.lblTipo.Text = "TIPO";
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.Red;
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnEliminar.Location = new System.Drawing.Point(174, 288);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(121, 46);
+            this.btnEliminar.TabIndex = 11;
+            this.btnEliminar.Text = "ELIMINAR";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Visible = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // FormProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 365);
+            this.BackColor = System.Drawing.Color.DarkOrange;
+            this.ClientSize = new System.Drawing.Size(471, 365);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.lblTipo);
             this.Controls.Add(this.lblStock);
             this.Controls.Add(this.lblPrecioUnidad);
@@ -159,6 +179,7 @@
             this.Controls.Add(this.txbPrecioUnidad);
             this.Controls.Add(this.txbDescripcion);
             this.Controls.Add(this.txbIdProducto);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormProducto";
@@ -182,5 +203,6 @@
         private System.Windows.Forms.Label lblPrecioUnidad;
         private System.Windows.Forms.Label lblStock;
         private System.Windows.Forms.Label lblTipo;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

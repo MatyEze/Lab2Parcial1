@@ -16,7 +16,20 @@ namespace Comercio
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormPrincipal());
+            FormLogin login = new FormLogin();
+            FormPrincipal formPrincipal = new FormPrincipal();
+
+            do
+            {
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    formPrincipal.ShowDialog(); //cierra sesion
+                }
+            } while (formPrincipal.DialogResult==DialogResult.Retry);
+
+            //Application.Run(new FormPrincipal());
+
+            
         }
     }
 }

@@ -14,3 +14,4 @@ C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\P
 C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.FormProducto.resources
 C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.FormMostrarLista.resources
 C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.FormPersona.resources
+C:\Users\Maty\Documents\ESCRITORIO TODO\PORGRAMACION\repositorios\Lab2Parcial1\Parcial1MatiasSellanes\Comercio\obj\Debug\Comercio.FormLogin.resources

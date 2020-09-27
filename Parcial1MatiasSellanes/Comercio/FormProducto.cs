@@ -24,7 +24,10 @@ namespace Comercio
             get { return producto; }
             set { producto = value; }
         }
-
+        public Button BtnEliminar
+        {
+            get { return this.btnEliminar; }
+        }
 
         public FormProducto()
         {
@@ -52,8 +55,25 @@ namespace Comercio
                 Validaciones.StringToDouble(this.txbPrecioUnidad.Text),
                 Validaciones.StringToInt(this.txbStock.Text));
 
-            
+
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void txbIdProducto_Leave(object sender, EventArgs e)
+        {
+            if (this.txbIdProducto.Text == string.Empty)
+            {
+                this.txbIdProducto.Text = (Administracion.UltimaIdProducto + 1).ToString();
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Esta seguro que quiere eliminar este producto?\nEl cambio sera permanente", "Eliminar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                //eliminar producto
+                this.DialogResult = DialogResult.OK;
+            }
         }
     }
 }

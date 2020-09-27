@@ -130,5 +130,15 @@ namespace Entidades
             }
             return subList;
         }
+
+        public static int TotalStockEnLista(List<Producto> lista)
+        {
+            int valorRetorno = 0;
+            foreach (Producto item in lista)
+            {
+                valorRetorno += item.stock;
+            }
+            return valorRetorno;
+        }
     }
 }

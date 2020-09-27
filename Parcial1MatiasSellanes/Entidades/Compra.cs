@@ -86,5 +86,17 @@ namespace Entidades
         {
             return !(listaCompras == compra);
         }
+        /// <summary>
+        /// reduce el total de la compra dependiendo del valor pasado, si el total queda en un valor negativo se setea en 0
+        /// </summary>
+        /// <param name="reducir"></param>
+        public void ReducirTotal(double reducir)
+        {
+            this.total -= reducir;
+            if (this.total < 0)
+            {
+                this.total = 0;
+            }
+        }
     }
 }
