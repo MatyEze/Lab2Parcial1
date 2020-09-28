@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -16,6 +17,7 @@ namespace Entidades
         static List<Empleado> empleados;
         static List<Cliente> clientes;
         static List<Compra> ventas;
+        static Dictionary<int, string> users;
 
         static public List<Producto> Inventario
         {
@@ -41,6 +43,10 @@ namespace Entidades
         {
             get { return ultimaIdProducto; }
         }
+        static public Dictionary<int, string> Users
+        {
+            get { return users; }
+        }
 
         static Administracion()
         {
@@ -48,8 +54,20 @@ namespace Entidades
             empleados = new List<Empleado>();
             clientes = new List<Cliente>();
             ventas = new List<Compra>();
+            users = new Dictionary<int, string>();
             ultimaIdProducto = 0;
             ultimoNroCompras = 0;
+        }
+
+        public static void GenerateUsers()
+        {
+            foreach (Empleado item in empleados)
+            {
+                if (!users.ContainsKey(item.Dni))
+                {
+                    users.Add(item.Dni, item.Apellido);
+                }
+            }
         }
 
         public static bool Add(Producto producto)

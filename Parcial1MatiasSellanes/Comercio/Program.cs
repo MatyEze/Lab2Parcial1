@@ -23,7 +23,12 @@ namespace Comercio
             {
                 if (login.ShowDialog() == DialogResult.OK)
                 {
+                    formPrincipal.DniEmpleado = login.Clave;
                     formPrincipal.ShowDialog(); //cierra sesion
+                }
+                else
+                {
+                    formPrincipal.DialogResult = DialogResult.Cancel;
                 }
             } while (formPrincipal.DialogResult==DialogResult.Retry);
 

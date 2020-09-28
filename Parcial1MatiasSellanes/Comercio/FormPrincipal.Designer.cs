@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStripPrincipal = new System.Windows.Forms.MenuStrip();
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.añadirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +40,9 @@
             this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.listaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dtgvPrincipal = new System.Windows.Forms.DataGridView();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregarAlCarro = new System.Windows.Forms.Button();
@@ -57,13 +61,13 @@
             this.lblElDescuento = new System.Windows.Forms.Label();
             this.lblVuelvaProntoss = new System.Windows.Forms.Label();
             this.picboxLogo = new System.Windows.Forms.PictureBox();
-            this.sesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiempoDeActividad = new System.Windows.Forms.Timer(this.components);
+            this.picBoxMenuStrip = new System.Windows.Forms.PictureBox();
             this.menuStripPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvCarrito)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxMenuStrip)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStripPrincipal
@@ -81,6 +85,7 @@
             this.menuStripPrincipal.TabIndex = 0;
             this.menuStripPrincipal.Text = "menuStrip1";
             this.menuStripPrincipal.MouseEnter += new System.EventHandler(this.menuStripPrincipal_MouseEnter);
+            this.menuStripPrincipal.MouseLeave += new System.EventHandler(this.menuStripPrincipal_MouseLeave);
             // 
             // productosToolStripMenuItem
             // 
@@ -158,6 +163,29 @@
             this.listaToolStripMenuItem.Size = new System.Drawing.Size(238, 32);
             this.listaToolStripMenuItem.Text = "Lista empleados";
             this.listaToolStripMenuItem.Click += new System.EventHandler(this.listaEmpleadosToolStripMenuItem_Click);
+            // 
+            // sesionToolStripMenuItem
+            // 
+            this.sesionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cerrarSesionToolStripMenuItem,
+            this.salirToolStripMenuItem1});
+            this.sesionToolStripMenuItem.Name = "sesionToolStripMenuItem";
+            this.sesionToolStripMenuItem.Size = new System.Drawing.Size(83, 32);
+            this.sesionToolStripMenuItem.Text = "Sesion";
+            // 
+            // cerrarSesionToolStripMenuItem
+            // 
+            this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(210, 32);
+            this.cerrarSesionToolStripMenuItem.Text = "Cerrar sesion";
+            this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
+            // 
+            // salirToolStripMenuItem1
+            // 
+            this.salirToolStripMenuItem1.Name = "salirToolStripMenuItem1";
+            this.salirToolStripMenuItem1.Size = new System.Drawing.Size(210, 32);
+            this.salirToolStripMenuItem1.Text = "Salir";
+            this.salirToolStripMenuItem1.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // dtgvPrincipal
             // 
@@ -350,28 +378,20 @@
             this.picboxLogo.TabIndex = 18;
             this.picboxLogo.TabStop = false;
             // 
-            // sesionToolStripMenuItem
+            // tiempoDeActividad
             // 
-            this.sesionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cerrarSesionToolStripMenuItem,
-            this.salirToolStripMenuItem1});
-            this.sesionToolStripMenuItem.Name = "sesionToolStripMenuItem";
-            this.sesionToolStripMenuItem.Size = new System.Drawing.Size(83, 32);
-            this.sesionToolStripMenuItem.Text = "Sesion";
+            this.tiempoDeActividad.Interval = 1000;
+            this.tiempoDeActividad.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // cerrarSesionToolStripMenuItem
+            // picBoxMenuStrip
             // 
-            this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
-            this.cerrarSesionToolStripMenuItem.Text = "Cerrar sesion";
-            this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
-            // 
-            // salirToolStripMenuItem1
-            // 
-            this.salirToolStripMenuItem1.Name = "salirToolStripMenuItem1";
-            this.salirToolStripMenuItem1.Size = new System.Drawing.Size(224, 32);
-            this.salirToolStripMenuItem1.Text = "Salir";
-            this.salirToolStripMenuItem1.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            this.picBoxMenuStrip.BackColor = System.Drawing.Color.DarkOrange;
+            this.picBoxMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.picBoxMenuStrip.Name = "picBoxMenuStrip";
+            this.picBoxMenuStrip.Size = new System.Drawing.Size(1483, 36);
+            this.picBoxMenuStrip.TabIndex = 19;
+            this.picBoxMenuStrip.TabStop = false;
+            this.picBoxMenuStrip.MouseEnter += new System.EventHandler(this.menuStripPrincipal_MouseEnter);
             // 
             // FormPrincipal
             // 
@@ -399,6 +419,7 @@
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dtgvPrincipal);
             this.Controls.Add(this.menuStripPrincipal);
+            this.Controls.Add(this.picBoxMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStripPrincipal;
             this.Name = "FormPrincipal";
@@ -410,6 +431,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPrincipal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvCarrito)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxMenuStrip)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,6 +471,8 @@
         private System.Windows.Forms.ToolStripMenuItem sesionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarSesionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem1;
+        private System.Windows.Forms.Timer tiempoDeActividad;
+        private System.Windows.Forms.PictureBox picBoxMenuStrip;
     }
 }
 

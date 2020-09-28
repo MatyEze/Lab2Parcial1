@@ -40,7 +40,7 @@ namespace Comercio
             if (producto != null)
             {
                 this.txbIdProducto.Text = producto.IdProducto.ToString();
-                this.txbDescripcion.Text = producto.Decripcion;
+                this.txbDescripcion.Text = producto.Descripcion;
                 this.txbPrecioUnidad.Text = producto.PrecioUnidad.ToString();
                 this.txbStock.Text = producto.Stock.ToString();
                 this.cmbTipoProducto.SelectedItem = producto.Tipo;

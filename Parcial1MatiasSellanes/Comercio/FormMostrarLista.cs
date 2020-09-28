@@ -63,6 +63,7 @@ namespace Comercio
         private void FormMostrarLista_Load(object sender, EventArgs e)
         {
             this.dtgvLista.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            this.dtgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
     }

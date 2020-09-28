@@ -26,7 +26,7 @@ namespace Entidades
                 return this.idProducto;
             }
         }
-        public string Decripcion
+        public string Descripcion
         {
             get
             {
