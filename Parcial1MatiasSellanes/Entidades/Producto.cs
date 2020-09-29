@@ -140,5 +140,9 @@ namespace Entidades
             }
             return valorRetorno;
         }
+        public override string ToString()
+        {
+            return this.descripcion;
+        }
     }
 }
