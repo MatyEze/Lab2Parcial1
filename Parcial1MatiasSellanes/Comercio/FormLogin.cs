@@ -45,13 +45,15 @@ namespace Comercio
         {
             HardCodeEmpleados();
             Administracion.GenerateUsers();
-            this.txbClave.Text = string.Empty;
+            this.picboxLogoLogin.ImageLocation = @"..\img\logologinScale.jpg";
             this.txbUser.Text = string.Empty;
         }
 
         private void HardCodeEmpleados()
         {
             Administracion.Add(new Empleado("Matias", "Sellanes", 123456789));
+            Administracion.Add(new Empleado("Derat", "Demtres", 222222222));
+            Administracion.Add(new Empleado("Demian", "Sanchez", 333333333));
         }
 
         private bool Login(Dictionary<int, string> users)

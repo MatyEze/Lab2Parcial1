@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.txbUser = new System.Windows.Forms.TextBox();
@@ -35,6 +36,8 @@
             this.lblClave = new System.Windows.Forms.Label();
             this.txbClave = new System.Windows.Forms.TextBox();
             this.lblIncorrecto = new System.Windows.Forms.Label();
+            this.picboxLogoLogin = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picboxLogoLogin)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -113,6 +116,14 @@
             this.lblIncorrecto.Text = "Clave o usuario incorrecto";
             this.lblIncorrecto.Visible = false;
             // 
+            // picboxLogoLogin
+            // 
+            this.picboxLogoLogin.Location = new System.Drawing.Point(12, 23);
+            this.picboxLogoLogin.Name = "picboxLogoLogin";
+            this.picboxLogoLogin.Size = new System.Drawing.Size(206, 165);
+            this.picboxLogoLogin.TabIndex = 7;
+            this.picboxLogoLogin.TabStop = false;
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -120,6 +131,7 @@
             this.BackColor = System.Drawing.Color.DarkOrange;
             this.ClientSize = new System.Drawing.Size(514, 358);
             this.ControlBox = false;
+            this.Controls.Add(this.picboxLogoLogin);
             this.Controls.Add(this.lblIncorrecto);
             this.Controls.Add(this.lblClave);
             this.Controls.Add(this.txbClave);
@@ -128,10 +140,12 @@
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.FormLogin_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.picboxLogoLogin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,5 +160,6 @@
         private System.Windows.Forms.Label lblClave;
         private System.Windows.Forms.TextBox txbClave;
         private System.Windows.Forms.Label lblIncorrecto;
+        private System.Windows.Forms.PictureBox picboxLogoLogin;
     }
 }

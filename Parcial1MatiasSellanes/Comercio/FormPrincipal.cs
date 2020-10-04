@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Media;
 
 namespace Comercio
 {
@@ -17,6 +18,8 @@ namespace Comercio
         List<ItemCompra> carritoDeCompras;
         double descuento;
         int dniEmpleado;
+        SoundPlayer sonidoCompra;
+        TimeSpan tiempoInactivo;
         public int DniEmpleado
         {
             set { dniEmpleado = value; }
@@ -32,14 +35,16 @@ namespace Comercio
             carritoDeCompras = new List<ItemCompra>();
             SelecionarEmpleado(dniEmpleado);
             descuento = 0;
-            this.picboxLogo.ImageLocation = @"..\img\kwik-e-mart.jpg"; //no carga la imagen 
+            this.picboxLogo.ImageLocation = @"..\img\kwik-e-mart.jpg";
+            this.sonidoCompra = new SoundPlayer(@"..\sound\compra1.wav");
             this.tiempoDeActividad.Start();
+            this.tiempoInactivo = TimeSpan.Zero;
             CargarAllDataGrid();
             ConfigurarDataGrids();
         }
 
         #region INACTIVIDAD
-        [DllImport("User32.dll")]
+        /*[DllImport("User32.dll")]                                                  si se usa esta cambiar el timertick a 1000
         private static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
 
         internal struct LASTINPUTINFO
@@ -59,7 +64,22 @@ namespace Comercio
         {
             if (GetIdleTime() > (1000*60)*2) // cierre sesion despues de 2 min
                 this.DialogResult = DialogResult.Retry;
+        }*/
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            this.tiempoInactivo += TimeSpan.FromSeconds(1);
+            if (tiempoInactivo.TotalMinutes >= 2)   // cierre sesion despues de 2 min
+            {
+                this.DialogResult = DialogResult.Retry;
+            }
+            
         }
+        private void RestearTiempoInactividad()
+        {
+            this.tiempoInactivo = TimeSpan.Zero; // reseteo el tiempo de inactividad
+        }
+
         #endregion
 
         #region MENU_STRIP
@@ -135,10 +155,10 @@ namespace Comercio
             mostrarLista.ListaDtgv.DataSource = Administracion.Clientes;
             mostrarLista.BotonAgregar.Enabled = true;
             mostrarLista.Text = "LISTA CLIENTES";
-            if (mostrarLista.ShowDialog() == DialogResult.Yes)
+            if (mostrarLista.ShowDialog() == DialogResult.Yes) //si presiona agregar
             {
                 FormPersona agregarPersona = new FormPersona("Cliente");
-                if (agregarPersona.ShowDialog() == DialogResult.OK)
+                if (agregarPersona.ShowDialog() == DialogResult.OK) //aceptar en formPersona
                 {
                     listaClientesToolStripMenuItem_Click(sender, e);
                 }
@@ -170,11 +190,13 @@ namespace Comercio
         private void menuStripPrincipal_MouseEnter(object sender, EventArgs e)
         {
             this.menuStripPrincipal.Visible = true;
+            RestearTiempoInactividad();
             BorrarVuelvaProntoss();
         }
         private void menuStripPrincipal_MouseLeave(object sender, EventArgs e)
         {
             this.menuStripPrincipal.Visible = false;
+            RestearTiempoInactividad();
         }
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -187,6 +209,7 @@ namespace Comercio
         private void dtgvPrincipal_MouseEnter(object sender, EventArgs e)
         {
             BorrarVuelvaProntoss();
+            RestearTiempoInactividad();
         }
 
 
@@ -204,6 +227,7 @@ namespace Comercio
 
         private void dtgvCarrito_DataSourceChanged(object sender, EventArgs e)
         {
+            RestearTiempoInactividad();
             this.btnResetearCarro.Enabled = false;
             this.btnRealizarVenta.Enabled = false;
             if (dtgvCarrito.Rows.Count > 0)
@@ -224,6 +248,7 @@ namespace Comercio
         }
         public void CargarAllDataGrid()
         {
+            RestearTiempoInactividad();
             CargarDataGrid(Administracion.Inventario);
             CargarDataGrid(this.carritoDeCompras);
         }
@@ -233,6 +258,7 @@ namespace Comercio
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            RestearTiempoInactividad();
             if (this.dtgvPrincipal.SelectedRows.Count > 0)
             {
                 FormProducto formProducto = new FormProducto();
@@ -250,6 +276,7 @@ namespace Comercio
 
         private void btnRealizarVenta_Click(object sender, EventArgs e)
         {
+            RestearTiempoInactividad();
             if (carritoDeCompras.Count > 0 && this.txbDniCliente.BackColor != Color.Red)
             {
                 Compra compra = new Compra((Administracion.UltimoNroCompras) + 1, carritoDeCompras);
@@ -279,6 +306,7 @@ namespace Comercio
                     Administracion.Empleados[Administracion.FindEmpleadoIndexByDni(Validaciones.StringToInt(this.txbEmpleadoDni.Text))].AgregarCompra(compra); //agergo compra al empleado actual
                     this.lblVuelvaProntoss.Visible = true;
                     carritoDeCompras = new List<ItemCompra>(); //limpio el carritoDeCompras
+                    sonidoCompra.Play();
                     CargarAllDataGrid();
                 }
                 else
@@ -292,7 +320,11 @@ namespace Comercio
         {
             if (this.dtgvPrincipal.SelectedRows.Count > 0) //solo agrega un solo producto que es el primer selecionado (cambiar para poder agragar de a muchos)
             {
-                carritoDeCompras.Add(new ItemCompra((Producto)this.dtgvPrincipal.SelectedRows[0].DataBoundItem, Validaciones.ValidarInt(this.txbCantidad.Text, 1)));
+                //carritoDeCompras.Add(new ItemCompra((Producto)this.dtgvPrincipal.SelectedRows[0].DataBoundItem, Validaciones.ValidarInt(this.txbCantidad.Text, 1)));
+                for (int i = 0; i < this.dtgvPrincipal.SelectedRows.Count; i++)
+                {
+                    if (!(carritoDeCompras + new ItemCompra((Producto)this.dtgvPrincipal.SelectedRows[i].DataBoundItem, Validaciones.ValidarInt(this.txbCantidad.Text, 1)))) { } //agrego itemPorducto a lista
+                }
                 CargarDataGrid(carritoDeCompras);
             }
         }
@@ -304,6 +336,7 @@ namespace Comercio
         }
         private void btnClienteExistente_Click(object sender, EventArgs e)
         {
+            RestearTiempoInactividad();
             FormMostrarLista formMostrar = new FormMostrarLista();
             formMostrar.ListaDtgv.DataSource = Administracion.Clientes;
             formMostrar.BotonAgregar.Enabled = true;
@@ -345,12 +378,23 @@ namespace Comercio
 
         private void HardCode()
         {
-            Administracion.Add(new Producto(5230, "galletas", TipoProducto.Seco, 250, 45));
-            Administracion.Add(new Producto(5233, "chocolate", TipoProducto.Seco, 300, 50));
-            Administracion.Add(new Producto(5235, "duraznos laterraza", TipoProducto.Enlatado, 80, 150));
+            //PRODUCTOS
+            Administracion.Add(new Producto(5230, "galletas", TipoProducto.Seco, 15, 45));
+            Administracion.Add(new Producto(5233, "chocolate", TipoProducto.Seco, 30, 50));
+            Administracion.Add(new Producto(5235, "duraznos laterraza (lata 500g)", TipoProducto.Enlatado, 200, 150));
             Administracion.Add(new Producto(5238, "chocolate agila", TipoProducto.Seco, 40, 5));
-            Administracion.Add(new Producto(5280, "caramelos sancor", TipoProducto.Seco, 15, 3));
-
+            Administracion.Add(new Producto(5289, "caramelos sancor", TipoProducto.Seco, 15, 30));
+            Administracion.Add(new Producto(5290, "cola springfield", TipoProducto.Bebida, 60, 450));
+            Administracion.Add(new Producto(5291, "radioactive cola", TipoProducto.Bebida, 80, 150));
+            Administracion.Add(new Producto(5292, "duff beer", TipoProducto.BebidaAlcoholica, 75, 1000));
+            Administracion.Add(new Producto(5293, "limpiatodo spring", TipoProducto.Limpieza, 150, 300));
+            Administracion.Add(new Producto(5294, "churrasco spidercerdo (bandeja 300g)", TipoProducto.Carne, 200, 50));
+            Administracion.Add(new Producto(5295, "churrasco spidercerdo (bandeja 700g)", TipoProducto.Carne, 370, 25));
+            Administracion.Add(new Producto(4250, "manzanas springfield", TipoProducto.Vegetal, 20, 150));
+            Administracion.Add(new Producto(4252, "queso (bandeja 250g)", TipoProducto.Lacteo, 200, 30));
+            ///////////////////////////////////////////////////////////////////////////////////////////
+           
+            //CLIENTES
             Administracion.Add(new Cliente("Anonimo", "Anonimo", 0));
             Administracion.Add(new Cliente("Homero", "Simpson", 12341234));
             Administracion.Add(new Cliente("Marge", "Simpson", 12348234));
@@ -358,7 +402,16 @@ namespace Comercio
             Administracion.Add(new Cliente("Detart", "Filatro", 122833234));
             Administracion.Add(new Cliente("Marcelo", "Parezco", 456833234));
 
-            Administracion.HardCodeCompra(1, Administracion.Inventario[1], 3, 123456789, 0);
+            /////////////////////////////////////////////////////////////////////////////
+           
+            //COMPRAS
+            Administracion.HardCodeCompra(100, Administracion.Inventario[1], 3, 123456789, 0);
+            Administracion.HardCodeCompra(250, Administracion.Inventario[0], 4, 123456789, 0);
+            Administracion.HardCodeCompra(354, Administracion.Inventario[5], 8, 123456789, 0);
+            Administracion.HardCodeCompra(355, Administracion.Inventario[6], 20, 222222222, 0);
+            Administracion.HardCodeCompra(355, Administracion.Inventario[3], 8, 222222222, 0);
+            Administracion.HardCodeCompra(356, Administracion.Inventario[4], 5, 333333333, 0);
+            Administracion.HardCodeCompra(357, Administracion.Inventario[8], 3, 333333333, 0);
         }
         private void BorrarVuelvaProntoss()
         {

@@ -71,7 +71,7 @@ namespace Comercio
         {
             if (MessageBox.Show("¿Esta seguro que quiere eliminar este producto?\nEl cambio sera permanente", "Eliminar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                //eliminar producto
+                Administracion.RemoverProductoPorId(Validaciones.StringToInt(this.txbIdProducto.Text));
                 this.DialogResult = DialogResult.OK;
             }
         }

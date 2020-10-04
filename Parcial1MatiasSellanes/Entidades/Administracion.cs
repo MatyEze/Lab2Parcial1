@@ -72,7 +72,7 @@ namespace Entidades
 
         public static bool Add(Producto producto)
         {
-            bool valorRetorno=false;
+            bool valorRetorno = false;
             if (inventario + producto)
             {
                 if (ultimaIdProducto < producto.IdProducto)
@@ -157,6 +157,27 @@ namespace Entidades
                 }
             }
             return valorRetorno;
+        }
+        public static int FindProductoIndexById(int idProducto)
+        {
+            int valorRetorno = -1;
+            for (int i = 0; i < inventario.Count; i++)
+            {
+                if (inventario[i].IdProducto == idProducto)
+                {
+                    valorRetorno = i;
+                    break;
+                }
+            }
+            return valorRetorno;
+        }
+        public static void RemoverProductoPorId(int idProducto)
+        {
+            int index = FindProductoIndexById(idProducto);
+            if (index >= 0)
+            {
+                inventario.RemoveAt(index);
+            }
         }
         /// <summary>
         /// hardcodea una compra de un solo producto y lo agraga a la lista de ventas y se la otorga al cliente y empleado correspondientes

@@ -31,6 +31,11 @@ namespace Entidades
             {
                 return cantidad;
             }
+            set
+            {
+                this.cantidad = value;
+                this.precioTotal = precioUnidadVenta * cantidad; // como se llame al set se recalcula el total para evitar problemas
+            }
         }
         public double PrecioUnidadVenta
         {
@@ -63,6 +68,17 @@ namespace Entidades
             {
                 listaItemsDeCompra.Add(itemCompra);
                 valorRetorno = true;
+            }
+            else
+            {
+                foreach (ItemCompra item in listaItemsDeCompra)
+                {
+                    if (item.elProducto.IdProducto == itemCompra.elProducto.IdProducto)
+                    {
+                        item.Cantidad += itemCompra.Cantidad;
+                        break;
+                    }
+                }
             }
             return valorRetorno;
         }
