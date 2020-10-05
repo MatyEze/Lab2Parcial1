@@ -222,7 +222,7 @@ namespace Comercio
             this.dtgvPrincipal.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvCarrito.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            this.dtgvCarrito.Enabled = false; //rompe cuando hacen click si el control esta habilitado
+            //this.dtgvCarrito.Enabled = false; //rompe cuando hacen click si el control esta habilitado (FIXED)
         }
 
         private void dtgvCarrito_DataSourceChanged(object sender, EventArgs e)
@@ -239,12 +239,14 @@ namespace Comercio
         public void CargarDataGrid(List<Producto> listaProductos)
         {
             this.dtgvPrincipal.DataSource = null;
-            this.dtgvPrincipal.DataSource = listaProductos;
+            if(listaProductos.Count > 0)
+                this.dtgvPrincipal.DataSource = listaProductos;
         }
         public void CargarDataGrid(List<ItemCompra> listaItemsCompra)
         {
             this.dtgvCarrito.DataSource = null;
-            this.dtgvCarrito.DataSource = listaItemsCompra;
+            if(listaItemsCompra.Count > 0)
+                this.dtgvCarrito.DataSource = listaItemsCompra;
         }
         public void CargarAllDataGrid()
         {
