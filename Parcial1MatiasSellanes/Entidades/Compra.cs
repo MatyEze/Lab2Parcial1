@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,6 +97,40 @@ namespace Entidades
             if (this.total < 0)
             {
                 this.total = 0;
+            }
+        }
+
+        public void GenerarTicket(string folderName)
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string nombreArchivo = $"{this.numeroDeCompra}---{DateTime.Now.Day}-{DateTime.Now.Month}-{DateTime.Now.Year}---{DateTime.Now.Hour}hs{DateTime.Now.Minute}m";
+            if (folderName == null || folderName == string.Empty)
+            {
+                path += @"\" + nombreArchivo + ".txt";
+            }
+            else
+            {
+                path += @"\" + folderName;
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                path += @"\" + nombreArchivo + ".txt";
+            }
+
+            if (!File.Exists(path))
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine($"COMPRA {this.numeroDeCompra}");
+                    sw.WriteLine($"**********************************************");
+                    foreach (ItemCompra item in listaItemsCompra)
+                    {
+                        sw.WriteLine($"* {item.ElProducto.ToString()} (${item.PrecioUnidadVenta} p/u) x {item.Cantidad} ---------- ${item.PrecioTotal}");
+                    }
+                    sw.WriteLine($"* TOTAL : ------------------------ ${this.total}");
+                    sw.WriteLine($"**********************************************");
+                }
             }
         }
     }

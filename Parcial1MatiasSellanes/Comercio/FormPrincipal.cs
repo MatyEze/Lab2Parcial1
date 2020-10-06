@@ -325,6 +325,7 @@ namespace Comercio
                     }
                     Administracion.Empleados[Administracion.FindEmpleadoIndexByDni(Validaciones.StringToInt(this.txbEmpleadoDni.Text))].AgregarCompra(compra); //agergo compra al empleado actual
                     this.lblVuelvaProntoss.Visible = true;
+                    compra.GenerarTicket("tickets");
                     carritoDeCompras = new List<ItemCompra>(); //limpio el carritoDeCompras
                     sonidoCompra.Play();
                     CargarAllDataGrid();
