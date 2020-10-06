@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -14,6 +15,7 @@ namespace Entidades
 #pragma warning restore CS0660 // El tipo define operator == or operator !=, pero no reemplaza a override Object.Equals(object o)
     {
         List<Compra> listaCompras;
+        DateTime fechaRegitro;
 
         /*public List<Compra> ListaCompras
         {
@@ -23,6 +25,7 @@ namespace Entidades
         public Cliente(string nombre, string apellido, int dni) : base(nombre, apellido, dni)
         {
             listaCompras = new List<Compra>();
+            fechaRegitro = DateTime.Now;
         }
 
         public void AgregarCompra(Compra compra)
@@ -57,6 +60,17 @@ namespace Entidades
         public static bool operator !=(List<Cliente> listaClientes, Cliente cliente)
         {
             return !(listaClientes == cliente);
+        }
+
+        public override void ToFileTxt(string folderName)
+        {
+            base.ToFileTxt(folderName);
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\" + folderName + $@"\{base.nombre}-{base.apellido}-{base.dni}.txt";
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"CLIENTE REGISTRADO EL {this.fechaRegitro}");
+
+            File.AppendAllText(path, sb.ToString());
         }
     }
 }

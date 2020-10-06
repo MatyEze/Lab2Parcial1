@@ -65,6 +65,5 @@ namespace Comercio
             this.dtgvLista.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             this.dtgvLista.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
     }
 }

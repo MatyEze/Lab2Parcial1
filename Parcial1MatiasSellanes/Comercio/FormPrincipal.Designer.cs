@@ -64,6 +64,7 @@
             this.picboxLogo = new System.Windows.Forms.PictureBox();
             this.tiempoDeActividad = new System.Windows.Forms.Timer(this.components);
             this.picBoxMenuStrip = new System.Windows.Forms.PictureBox();
+            this.salidaATxtDePersonasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvCarrito)).BeginInit();
@@ -168,6 +169,7 @@
             // sesionToolStripMenuItem
             // 
             this.sesionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salidaATxtDePersonasToolStripMenuItem,
             this.cerrarSesionToolStripMenuItem,
             this.salirToolStripMenuItem1});
             this.sesionToolStripMenuItem.Name = "sesionToolStripMenuItem";
@@ -177,14 +179,14 @@
             // cerrarSesionToolStripMenuItem
             // 
             this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(210, 32);
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(304, 32);
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar sesion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem1
             // 
             this.salirToolStripMenuItem1.Name = "salirToolStripMenuItem1";
-            this.salirToolStripMenuItem1.Size = new System.Drawing.Size(210, 32);
+            this.salirToolStripMenuItem1.Size = new System.Drawing.Size(304, 32);
             this.salirToolStripMenuItem1.Text = "Salir";
             this.salirToolStripMenuItem1.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -394,6 +396,13 @@
             this.picBoxMenuStrip.TabStop = false;
             this.picBoxMenuStrip.MouseEnter += new System.EventHandler(this.menuStripPrincipal_MouseEnter);
             // 
+            // salidaATxtDePersonasToolStripMenuItem
+            // 
+            this.salidaATxtDePersonasToolStripMenuItem.Name = "salidaATxtDePersonasToolStripMenuItem";
+            this.salidaATxtDePersonasToolStripMenuItem.Size = new System.Drawing.Size(304, 32);
+            this.salidaATxtDePersonasToolStripMenuItem.Text = "Salida a txt de personas";
+            this.salidaATxtDePersonasToolStripMenuItem.Click += new System.EventHandler(this.salidaATxtDePersonasToolStripMenuItem_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -475,6 +484,7 @@
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem1;
         private System.Windows.Forms.Timer tiempoDeActividad;
         private System.Windows.Forms.PictureBox picBoxMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem salidaATxtDePersonasToolStripMenuItem;
     }
 }
 

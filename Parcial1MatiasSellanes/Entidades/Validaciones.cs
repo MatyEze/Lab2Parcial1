@@ -92,10 +92,10 @@ namespace Entidades
             return valorRetorno;
         }
         /// <summary>
-        /// verifica que el string pasado solo contenga numeros
+        /// verifica que el string pasado solo contenga numeros y espacios
         /// </summary>
         /// <param name="strng"></param>
-        /// <returns>devuelve falso si el string contiene caracteres que no sean numeros</returns>
+        /// <returns>devuelve falso si el string contiene caracteres que no sean numeros o espacios</returns>
         public static bool VerificarNumeros(string strng)
         {
             bool valorRetorno = true;

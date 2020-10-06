@@ -432,5 +432,23 @@ namespace Comercio
             this.txbEmpleadoNombre.Text = $"{Administracion.Empleados[index].Nombre} {Administracion.Empleados[index].Apellido}";
             this.txbEmpleadoDni.Text = $"{Administracion.Empleados[index].Dni}";
         }
+
+        private void salidaATxtDePersonasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Persona> listaPersonas = new List<Persona>();
+            foreach (Empleado item in Administracion.Empleados)
+            {
+                listaPersonas.Add(item);
+            }
+            foreach (Cliente item in Administracion.Clientes)
+            {
+                listaPersonas.Add(item);
+            }
+
+            foreach (Persona item in listaPersonas)
+            {
+                item.ToFileTxt("personas");
+            }
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace Comercio
             Administracion.GenerateUsers();
             this.picboxLogoLogin.ImageLocation = @"..\img\logologinScale.jpg";
             this.txbUser.Text = string.Empty;
+            this.txbClave.Text = string.Empty;
         }
 
         private void HardCodeEmpleados()
