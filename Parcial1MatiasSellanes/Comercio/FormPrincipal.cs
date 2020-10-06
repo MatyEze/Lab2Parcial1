@@ -203,6 +203,24 @@ namespace Comercio
             this.DialogResult = DialogResult.Retry;
         }
 
+        private void salidaATxtDePersonasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Persona> listaPersonas = new List<Persona>();
+            foreach (Empleado item in Administracion.Empleados)
+            {
+                listaPersonas.Add(item);
+            }
+            foreach (Cliente item in Administracion.Clientes)
+            {
+                listaPersonas.Add(item);
+            }
+
+            foreach (Persona item in listaPersonas)
+            {
+                item.ToFileTxt("personas");
+            }
+        }
+
         #endregion
 
         #region DATAGRIDS
@@ -394,6 +412,10 @@ namespace Comercio
             Administracion.Add(new Producto(5295, "churrasco spidercerdo (bandeja 700g)", TipoProducto.Carne, 370, 25));
             Administracion.Add(new Producto(4250, "manzanas springfield", TipoProducto.Vegetal, 20, 150));
             Administracion.Add(new Producto(4252, "queso (bandeja 250g)", TipoProducto.Lacteo, 200, 30));
+            Administracion.Add(new Producto(4203, "flores de la abuela maria", TipoProducto.Vegetal, 500, 25));
+            Administracion.Add(new Producto(6281, "redbull", TipoProducto.Bebida, 300, 35));
+            Administracion.Add(new Producto(6282, "clean", TipoProducto.Limpieza, 400, 80));
+            Administracion.Add(new Producto(6283, "tornillos mctork(caja 300u)", TipoProducto.Otros, 400, 100));
             ///////////////////////////////////////////////////////////////////////////////////////////
            
             //CLIENTES
@@ -411,9 +433,11 @@ namespace Comercio
             Administracion.HardCodeCompra(250, Administracion.Inventario[0], 4, 123456789, 0);
             Administracion.HardCodeCompra(354, Administracion.Inventario[5], 8, 123456789, 0);
             Administracion.HardCodeCompra(355, Administracion.Inventario[6], 20, 222222222, 0);
-            Administracion.HardCodeCompra(355, Administracion.Inventario[3], 8, 222222222, 0);
-            Administracion.HardCodeCompra(356, Administracion.Inventario[4], 5, 333333333, 0);
-            Administracion.HardCodeCompra(357, Administracion.Inventario[8], 3, 333333333, 0);
+            Administracion.HardCodeCompra(356, Administracion.Inventario[3], 8, 222222222, 0);
+            Administracion.HardCodeCompra(420, Administracion.Inventario[13], 2, 222222222, 122151234);
+            Administracion.HardCodeCompra(357, Administracion.Inventario[4], 5, 333333333, 0);
+            Administracion.HardCodeCompra(358, Administracion.Inventario[8], 3, 333333333, 0);
+            Administracion.HardCodeCompra(870, Administracion.Inventario[10], 2, 333333333, 0);
         }
         private void BorrarVuelvaProntoss()
         {
@@ -433,22 +457,5 @@ namespace Comercio
             this.txbEmpleadoDni.Text = $"{Administracion.Empleados[index].Dni}";
         }
 
-        private void salidaATxtDePersonasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<Persona> listaPersonas = new List<Persona>();
-            foreach (Empleado item in Administracion.Empleados)
-            {
-                listaPersonas.Add(item);
-            }
-            foreach (Cliente item in Administracion.Clientes)
-            {
-                listaPersonas.Add(item);
-            }
-
-            foreach (Persona item in listaPersonas)
-            {
-                item.ToFileTxt("personas");
-            }
-        }
     }
 }
